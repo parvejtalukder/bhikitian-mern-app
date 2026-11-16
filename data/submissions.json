@@ -1,0 +1,174 @@
+[
+  {
+    "id": "BHK-2026-4102",
+    "submissionType": "biography",
+    "edition": "en",
+    "proposedTitle": "A. K. Fazlul Huq",
+    "summary": "Expanded biographical entry covering Sher-e-Bangla A. K. Fazlul Huq’s legal career, the Krishak Praja Party, and the 1940 Lahore Resolution with archival citations.",
+    "referenceUrls": [
+      "https://en.banglapedia.org/index.php/Huq,_AK_Fazlul",
+      "https://www.britannica.com/biography/A-K-Fazlul-Huq"
+    ],
+    "requesterName": "Dr. Mahmudur Rahman",
+    "requesterEmail": "m.rahman@dhakahistory.org",
+    "requesterWhatsapp": "+8801711223344",
+    "affiliation": "Bengal Historical Society",
+    "notes": "Priority academic monograph alignment.",
+    "status": "published",
+    "currency": "USD",
+    "baseFee": 120,
+    "discountPercent": 100,
+    "discountReason": "Academic & Historical Public Interest Waiver (100%)",
+    "finalAmount": 0,
+    "paymentStatus": "waived",
+    "paymentVerifiedBy": "Editorial Desk",
+    "paymentVerifiedAt": "2026-11-10T09:15:00.000Z",
+    "staffNotes": "Verified primary archival references. Published on MediaWiki rev 13015 and linked to canonical URL.",
+    "mediawikiDraftTitle": "A._K._Fazlul_Huq",
+    "publishedArticleSlug": "A._K._Fazlul_Huq",
+    "publishedArticleUrl": "https://en.bhikitia.org/wiki/A._K._Fazlul_Huq",
+    "publishedAt": "2026-11-11T14:30:00.000Z",
+    "outreachLog": [
+      {
+        "id": "out-1",
+        "channel": "system",
+        "summary": "Submission logged and assigned tracking ID BHK-2026-4102.",
+        "sentBy": "System",
+        "sentAt": "2026-11-09T11:00:00.000Z"
+      },
+      {
+        "id": "out-2",
+        "channel": "email",
+        "summary": "Confirmed 100% scholarly fee waiver and moved draft to MediaWiki review queue.",
+        "sentBy": "Managing Editor",
+        "sentAt": "2026-11-10T09:20:00.000Z"
+      },
+      {
+        "id": "out-3",
+        "channel": "whatsapp",
+        "summary": "Sent published canonical link https://en.bhikitia.org/wiki/A._K._Fazlul_Huq via WhatsApp.",
+        "sentBy": "Managing Editor",
+        "sentAt": "2026-11-11T14:35:00.000Z"
+      }
+    ],
+    "createdAt": "2026-11-09T11:00:00.000Z",
+    "updatedAt": "2026-11-11T14:35:00.000Z"
+  },
+  {
+    "id": "BHK-2026-5289",
+    "submissionType": "organization",
+    "edition": "bilingual",
+    "proposedTitle": "Sylhet Heritage Research Archive",
+    "summary": "Institutional encyclopedia article documenting the 1998 founding, manuscript preservation initiatives, and open-access catalog of Sylhet regional records.",
+    "referenceUrls": [
+      "https://example.org/sylhet-archive-annual-report-2025",
+      "https://example.org/bangladesh-national-archives-directory"
+    ],
+    "requesterName": "Nusrat Jahan Chowdhury",
+    "requesterEmail": "nusrat@sylhetheritage.org",
+    "requesterWhatsapp": "+8801819556677",
+    "affiliation": "Sylhet Heritage Trust",
+    "notes": "Requires both English and Bengali cross-linked articles.",
+    "status": "awaiting_payment",
+    "currency": "BDT",
+    "baseFee": 12000,
+    "discountPercent": 25,
+    "discountReason": "Cultural Non-Profit Partner Discount (25%)",
+    "finalAmount": 9000,
+    "paymentStatus": "proof_submitted",
+    "paymentMethod": "bKash Merchant",
+    "paymentReference": "TRX9B44K208M",
+    "paymentSubmittedAt": "2026-11-14T16:40:00.000Z",
+    "staffNotes": "Bilingual scope confirmed. Requester submitted bKash TxID TRX9B44K208M; awaiting manual ledger check.",
+    "mediawikiDraftTitle": "Sylhet_Heritage_Research_Archive",
+    "outreachLog": [
+      {
+        "id": "out-4",
+        "channel": "system",
+        "summary": "Submission logged and assigned tracking ID BHK-2026-5289.",
+        "sentBy": "System",
+        "sentAt": "2026-11-13T08:15:00.000Z"
+      },
+      {
+        "id": "out-5",
+        "channel": "whatsapp",
+        "summary": "Shared 25% institutional discount quote (BDT 9,000) and bKash/Bank payment details.",
+        "sentBy": "Billing Desk",
+        "sentAt": "2026-11-14T10:10:00.000Z"
+      }
+    ],
+    "createdAt": "2026-11-13T08:15:00.000Z",
+    "updatedAt": "2026-11-14T16:40:00.000Z"
+  },
+  {
+    "id": "BHK-2026-6731",
+    "submissionType": "new_article",
+    "edition": "en",
+    "proposedTitle": "2026 SAFF Championship",
+    "summary": "Tournament overview, participating South Asian football federations, venues, and qualifying brackets for the 2026 SAFF Championship.",
+    "referenceUrls": [
+      "https://en.bhikitia.org/wiki/2026_SAFF_Championship",
+      "https://www.the-afc.com/en/national/saff_championship.html"
+    ],
+    "requesterName": "Tariqul Islam",
+    "requesterEmail": "tariq.sports@pressdesk.bd",
+    "requesterWhatsapp": "+8801912334455",
+    "affiliation": "South Asia Sports Chronicle",
+    "status": "fee_waived",
+    "currency": "USD",
+    "baseFee": 90,
+    "discountPercent": 100,
+    "discountReason": "Public Sporting Record Community Grant (100% Waiver)",
+    "finalAmount": 0,
+    "paymentStatus": "waived",
+    "paymentVerifiedBy": "Chief Editor",
+    "paymentVerifiedAt": "2026-11-15T07:00:00.000Z",
+    "staffNotes": "100% fee waived. Ready for final copyedit in edit.bhikitia.org.",
+    "mediawikiDraftTitle": "2026_SAFF_Championship",
+    "outreachLog": [
+      {
+        "id": "out-6",
+        "channel": "email",
+        "summary": "Approved 100% community fee waiver and queued article for MediaWiki editorial formatting.",
+        "sentBy": "Chief Editor",
+        "sentAt": "2026-11-15T07:05:00.000Z"
+      }
+    ],
+    "createdAt": "2026-11-14T18:20:00.000Z",
+    "updatedAt": "2026-11-15T07:05:00.000Z"
+  },
+  {
+    "id": "BHK-2026-7904",
+    "submissionType": "update_correction",
+    "edition": "en",
+    "proposedTitle": "2024 Interim government of Bangladesh",
+    "summary": "Update advisory council portfolio revisions and add verifiable Gazette notification references from Q4 2025.",
+    "referenceUrls": [
+      "https://bangabhaban.gov.bd/",
+      "https://cabinet.gov.bd/"
+    ],
+    "requesterName": "Farhana Yasmin",
+    "requesterEmail": "farhana.y@civicwatch.org",
+    "requesterWhatsapp": "+8801670889900",
+    "affiliation": "Civic Policy Desk",
+    "status": "review",
+    "currency": "USD",
+    "baseFee": 60,
+    "discountPercent": 0,
+    "finalAmount": 60,
+    "paymentStatus": "unpaid",
+    "staffNotes": "Pending source verification by policy desk editor before issuing quote.",
+    "mediawikiDraftTitle": "2024_Interim_government_of_Bangladesh",
+    "outreachLog": [
+      {
+        "id": "out-7",
+        "channel": "system",
+        "summary": "Request received and entered initial editorial notability & source review.",
+        "sentBy": "System",
+        "sentAt": "2026-11-15T19:45:00.000Z"
+      }
+    ],
+    "createdAt": "2026-11-15T19:45:00.000Z",
+    "updatedAt": "2026-11-15T19:45:00.000Z"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "Bhikitia",
+  "description": "Headless bilingual encyclopedia powered by MediaWiki 1.44.0 with editorial submission intake, tracking, billing, and staff publishing workflow.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
