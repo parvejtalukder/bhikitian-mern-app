@@ -20,8 +20,8 @@ import {
 } from './server/submissionStore.ts';
 
 const PORT = 3000;
-const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || 'bhikitia-staff-2026';
-const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET || 'bhikitia-revalidate-secret';
+const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE;
+const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
 
 const activeAdminTokens = new Set<string>();
 
@@ -185,8 +185,8 @@ async function startServer() {
   app.get('/api/config/contact', (_req, res) => {
     const cfg = getMediaWikiConfig();
     res.json({
-      whatsappNumber: process.env.WHATSAPP_DESK_NUMBER || '8801700000000',
-      editorialEmail: process.env.EDITORIAL_EMAIL || 'editorial@bhikitia.org',
+      whatsappNumber: process.env.WHATSAPP_DESK_NUMBER || '',
+      editorialEmail: process.env.EDITORIAL_EMAIL || '',
       publicSiteUrl: cfg.publicSiteUrl,
       staffMediawikiUrl: cfg.staffMediawikiUrl,
     });
@@ -260,7 +260,7 @@ async function startServer() {
   // --- Staff Editorial & Billing Admin (/submit/admin) ---
   app.post('/api/admin/login', (req, res) => {
     const passcode = String(req.body?.passcode || '').trim();
-    if (passcode !== ADMIN_PASSCODE) {
+    if (!ADMIN_PASSCODE || passcode !== ADMIN_PASSCODE) {
       res.status(401).json({ error: 'Invalid staff passcode.' });
       return;
     }

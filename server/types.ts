@@ -73,6 +73,10 @@ export interface WikiArticleResponse {
   lastEditor?: string;
   canonicalUrl: string;
   editUrl: string;
+  /** Public URL of the original article on the MediaWiki source wiki. */
+  sourceUrl?: string;
+  /** Present only when a verified revision id and revision URL are available. */
+  revisionUrl?: string;
   redirectedFrom?: string;
   html?: string;
   infoboxHtml?: string | null;
@@ -80,7 +84,7 @@ export interface WikiArticleResponse {
   categories: string[];
   langLinks: { lang: string; autonym: string; title: string; url: string }[];
   suggestions?: { title: string; slug: string; snippet: string }[];
-  cacheStatus: 'HIT' | 'MISS' | 'REVALIDATED';
+  cacheStatus: 'HIT' | 'MISS' | 'REVALIDATED' | 'STALE';
   fetchedAt: string;
 }
 

@@ -1,24 +1,20 @@
-import { useState } from 'react';
+const BHIKITIA_MARK = '/assets/Bhikitia.png';
 
-const LOCAL_CREST = '/src/assets/images/bhikitia_globe_crest_1794809163188.jpg';
-const LIVE_LOGO = 'https://en.bhikitia.org/images/9/97/Bhikitia.png';
+interface BrandMarkProps {
+  size?: number;
+  className?: string;
+}
 
-export function BrandMark({ size = 34 }: { size?: number }) {
-  const [src, setSrc] = useState(LIVE_LOGO);
-
+export function BrandMark({ size = 34, className = '' }: BrandMarkProps) {
   return (
     <img
-      src={src}
-      alt="Bhikitia encyclopedia globe emblem"
+      src={BHIKITIA_MARK}
+      alt="Bhikitia"
       width={size}
       height={size}
       referrerPolicy="no-referrer"
-      onError={() => {
-        if (src !== LOCAL_CREST) {
-          setSrc(LOCAL_CREST);
-        }
-      }}
-      className="rounded-full object-cover border border-[#e2e8f0] dark:border-[#1e293b] bg-[#fdfbf7] shrink-0"
+      decoding="async"
+      className={`shrink-0 rounded-lg bg-white object-contain ring-1 ring-black/5 dark:ring-white/10 ${className}`}
       style={{ width: size, height: size }}
     />
   );
