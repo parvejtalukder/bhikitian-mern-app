@@ -31,6 +31,8 @@ const PORTAL_TTL_MS = readIntEnv('MEDIAWIKI_PORTAL_TTL_MS', 60 * 1000, 5_000, 60
 const PORTAL_STALE_MS = readIntEnv('MEDIAWIKI_PORTAL_STALE_MS', 24 * 60 * 60 * 1000, 0, 7 * 24 * 60 * 60 * 1000);
 const SITEMAP_TTL_MS = readIntEnv('MEDIAWIKI_SITEMAP_TTL_MS', 30 * 60 * 1000, 10_000, 24 * 60 * 60 * 1000);
 const SITEMAP_STALE_MS = readIntEnv('MEDIAWIKI_SITEMAP_STALE_MS', 24 * 60 * 60 * 1000, 0, 7 * 24 * 60 * 60 * 1000);
+/** MediaWiki caps `allpages` at 500 rows per request; bound how far we page. */
+const SITEMAP_MAX_REQUESTS = readIntEnv('MEDIAWIKI_SITEMAP_MAX_REQUESTS', 24, 1, 200);
 const SEARCH_TTL_MS = readIntEnv('MEDIAWIKI_SEARCH_TTL_MS', 60 * 1000, 1_000, 10 * 60 * 1000);
 const SEARCH_STALE_MS = readIntEnv('MEDIAWIKI_SEARCH_STALE_MS', 5 * 60 * 1000, 0, 60 * 60 * 1000);
 const TOMBSTONE_TTL_MS = readIntEnv('MEDIAWIKI_TOMBSTONE_TTL_MS', 10 * 60 * 1000, 5_000, 24 * 60 * 60 * 1000);
@@ -1149,27 +1151,59 @@ class MediaWikiClient {
     }
 
     interface AllPagesResp {
+      continue?: { apcontinue?: string };
       query?: {
         allpages?: Array<{ pageid: number; title: string }>;
       };
     }
 
     const load = this.sitemapInFlight.run(cacheKey, async () => {
-      const data = await this.fetchApi<AllPagesResp>(
-        {
-          action: 'query',
-          list: 'allpages',
-          apnamespace: '0',
-          apfilterredir: 'nonredirects',
-          aplimit: '250',
-        },
-        {
-          kind: 'meta',
-          revalidate: Math.floor(SITEMAP_TTL_MS / 1000),
-          tags: [editionCacheTag()],
+      // MediaWiki returns at most 500 rows per `allpages` request, so page
+      // through `apcontinue` until the public namespace-0 corpus is covered:
+      // the first 250 titles alone are not a usable sitemap for this wiki.
+      const slugs: string[] = [];
+      const seen = new Set<string>();
+      let apcontinue: string | undefined;
+
+      for (let request = 0; request < SITEMAP_MAX_REQUESTS; request += 1) {
+        let data: AllPagesResp | undefined;
+        try {
+          data = await this.fetchApi<AllPagesResp>(
+            {
+              action: 'query',
+              list: 'allpages',
+              apnamespace: '0',
+              apfilterredir: 'nonredirects',
+              aplimit: '500',
+              ...(apcontinue ? { apcontinue } : {}),
+            },
+            {
+              kind: 'meta',
+              revalidate: Math.floor(SITEMAP_TTL_MS / 1000),
+              tags: [editionCacheTag()],
+            }
+          );
+        } catch (error) {
+          // Keep whatever has already been collected: a slow wiki that times out
+          // mid-pagination must still produce a usable sitemap. Only a failed
+          // *first* request is escalated, so the caller can fall back to the
+          // previously cached list instead of publishing an almost-empty one.
+          if (slugs.length === 0) throw error;
+          increment('mediawiki.sitemap', { result: 'partial', pages: slugs.length, request });
+          break;
         }
-      );
-      const slugs = (data.query?.allpages || []).map((p) => titleToSlug(p.title));
+        if (!data) break;
+
+        for (const page of data.query?.allpages || []) {
+          const slug = titleToSlug(page.title);
+          if (seen.has(slug)) continue;
+          seen.add(slug);
+          slugs.push(slug);
+        }
+
+        apcontinue = data.continue?.apcontinue;
+        if (!apcontinue) break;
+      }
       this.sitemapCache.set(cacheKey, slugs, { ttlMs: SITEMAP_TTL_MS, staleMs: SITEMAP_STALE_MS });
       increment('mediawiki.sitemap', { result: 'miss', pages: slugs.length });
       return slugs;

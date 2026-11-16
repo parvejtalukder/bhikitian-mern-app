@@ -2,11 +2,18 @@ import type { MetadataRoute } from 'next';
 import { mediawikiClient } from '../../server/mediawikiClient';
 import { resolvePublicSiteUrl } from '../lib/site';
 
-// ISR: the article list is fetched from MediaWiki (cached upstream) and the
-// result is served with `s-maxage=300` so crawls do not hit this origin.
-// Kept short because a build-time upstream failure (offline build machines)
-// yields a sitemap with only the static entries until the next revalidation.
-export const revalidate = 300;
+/**
+ * Rendered on request instead of at build time.
+ *
+ * Prerendering this route makes the build depend on the live wiki: one slow
+ * upstream response (this wiki regularly needs several seconds per cold
+ * request) was enough to publish a 2-URL sitemap and keep serving it for the
+ * whole revalidate window. Rendering on demand keeps the build independent of
+ * MediaWiki, and the request stays cheap because getSitemapSlugs() holds the
+ * list in-process for 30 minutes and in the Next Data Cache with a matching
+ * revalidate, so a crawl burst costs at most one upstream walk per window.
+ */
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const publicSiteUrl = resolvePublicSiteUrl();
